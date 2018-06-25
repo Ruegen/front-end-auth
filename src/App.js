@@ -4,11 +4,10 @@ import LoginForm from './components/LoginForm'
 import auth from './api/auth'
 
 
-
 class App extends Component {
 
   state = {
-    token: '',
+    token: null,
     isLoggedIn: false,
   }
 
@@ -30,6 +29,7 @@ class App extends Component {
       // nothing here so far
       // locked in
       const token = localStorage.getItem('token')
+
       // token (007)
       // token null
       if(token) {
@@ -50,13 +50,17 @@ class App extends Component {
 
 
   logout = () => {
-    // console.log('logout')
-    // update state to remove token
-    // update state to set isLoggedIn to false
+
+      this.setState({
+        token: null,
+        isLoggedIn:false
+      })
+      
+      localStorage.removeItem('token')
+       //return void
   }
 
   render() {
-    console.log(window)
     const {isLoggedIn} = this.state
     return <Fragment>
         {isLoggedIn ? 

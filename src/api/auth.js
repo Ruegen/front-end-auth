@@ -8,10 +8,13 @@ export default {
     fetchToken
 }
 
-async function fetchToken(username, password) {
-    // pretending to post the username, password
+async function fetchToken(email, password) {
+    // pretending to post the email, password
     // post gives back token if success
-    const response = await axios.get('/token') //fake token req
+    const response = await axios.post('/auth/login', {
+        email,
+        password
+    }) //fake token req
     const {token} = response.data
     return token
 }
